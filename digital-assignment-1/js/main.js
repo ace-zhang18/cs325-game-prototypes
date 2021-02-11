@@ -17,7 +17,7 @@ class MyScene extends Phaser.Scene {
         super();
 
         this.blocks = [];
-        this.dug = 0;
+        this.highest = 0;
 
         this.keyQ = null;
         this.keyE = null;
@@ -45,7 +45,7 @@ class MyScene extends Phaser.Scene {
         var centerX = 400;
         var centerY = -100;
 
-        var scale = 0.05;
+        var scale = 0.1;
 
         this.seedPerm();
 
@@ -53,7 +53,7 @@ class MyScene extends Phaser.Scene {
         {
             for (var x = 0; x < mapWidth; x++)
             {
-                var z = Math.floor(this.generate(x * scale, y * scale) * halfMapHeight) + halfMapHeight;
+                var z = Math.floor(this.generate(x * scale, y * scale) * halfMapHeight) + halfMapHeight + 1;
 
                 var tx = (x - y) * tileWidthHalf;
                 var ty = (x + y - (z*2)) * tileHeightHalf;
@@ -116,15 +116,15 @@ class MyScene extends Phaser.Scene {
         this.input.on('gameobjectdown', this.onClicked.bind(this));
 
         this.style = { font: "25px Verdana", fill: "#000000", align: "center" };
-        this.text = this.add.text( centerX, centerY, "Blocks Dug: " + this.dug, this.style ).setScrollFactor(0);
+        this.text = this.add.text( centerX, centerY, "Highest Height: " + this.highest, this.style ).setScrollFactor(0);
         this.text.setOrigin( 0.5, 0.0 );
         this.text.setDepth(Number.MAX_SAFE_INTEGER);
     }
 
     onClicked(pointer, gameObject){
-        gameObject.destroy();
-        this.dug += 1;
-        this.text.setText("Blocks Dug: " + this.dug)
+        let compZ = gameObject.getData("z");
+        if(this.highest < compZ) this.highest = compZ;
+        this.text.setText("Highest Height: " + this.highest)
     }
 
     update (time, delta)
