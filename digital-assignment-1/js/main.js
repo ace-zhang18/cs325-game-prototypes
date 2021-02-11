@@ -17,6 +17,7 @@ class MyScene extends Phaser.Scene {
         super();
 
         this.blocks = [];
+        this.dug = 0;
 
         this.keyQ = null;
         this.keyE = null;
@@ -27,6 +28,7 @@ class MyScene extends Phaser.Scene {
 
     preload() {
         this.load.image( 'grass', 'assets/terrain/grass.png' );
+        this.load.image( 'dirt', 'assets/terrain/dirt.png' );
     }
 
     create() {
@@ -34,7 +36,8 @@ class MyScene extends Phaser.Scene {
 
         var mapWidth = 20;
         var mapLength = 20;
-        var mapHeight = 5;
+        var halfMapHeight = 2;
+        var mapDepth = 5;
 
         var tileWidthHalf = 50;
         var tileHeightHalf = 25;
@@ -50,9 +53,10 @@ class MyScene extends Phaser.Scene {
         {
             for (var x = 0; x < mapWidth; x++)
             {
-                var z = Math.floor(this.generate(x * scale, y * scale) * mapHeight);
+                var z = Math.floor(this.generate(x * scale, y * scale) * halfMapHeight) + halfMapHeight;
+
                 var tx = (x - y) * tileWidthHalf;
-                var ty = (x + y - z * 2) * tileHeightHalf;
+                var ty = (x + y - (z*2)) * tileHeightHalf;
 
                 var block = this.add.image(centerX + tx, centerY + ty, 'grass');
 
@@ -61,8 +65,29 @@ class MyScene extends Phaser.Scene {
                 block.setData('z', z);
 
                 block.setDepth(centerY + ty);
+                
+                block.setInteractive();
 
                 this.blocks.push(block);
+
+                /*
+                for(var zFill = z-1; z > -mapDepth; z--){
+                    var tx = (x - y) * tileWidthHalf;
+                    var ty = (x + y - (zFill*2)) * tileHeightHalf;
+
+                    var block = this.add.image(centerX + tx, centerY + ty, 'dirt');
+    
+                    block.setData('x', x);
+                    block.setData('y', y);
+                    block.setData('z', zFill);
+    
+                    block.setDepth(centerY + ty);
+    
+                    block.setInteractive();
+
+                    this.blocks.push(block);
+                }
+                */
             }
         }
 
@@ -86,11 +111,26 @@ class MyScene extends Phaser.Scene {
 
         this.cameras.main.zoom = 0.62;
         this.cameras.main.scrollX = -110;
+        this.cameras.main.setBackgroundColor(0x9999FF)
+
+        this.input.on('gameobjectdown', this.onClicked.bind(this));
+
+        this.style = { font: "25px Verdana", fill: "#000000", align: "center" };
+        this.text = this.add.text( centerX, centerY, "Blocks Dug: " + this.dug, this.style ).setScrollFactor(0);
+        this.text.setOrigin( 0.5, 0.0 );
+        this.text.setDepth(Number.MAX_SAFE_INTEGER);
+    }
+
+    onClicked(pointer, gameObject){
+        gameObject.destroy();
+        this.dug += 1;
+        this.text.setText("Blocks Dug: " + this.dug)
     }
 
     update (time, delta)
     {
         this.controls.update(delta);
+        
     }
 
     seedPerm ()
