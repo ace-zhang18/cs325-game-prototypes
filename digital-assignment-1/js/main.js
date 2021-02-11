@@ -18,6 +18,7 @@ class MyScene extends Phaser.Scene {
 
         this.blocks = [];
         this.highest = 0;
+        this.limit = 0;
 
         this.keyQ = null;
         this.keyE = null;
@@ -38,6 +39,8 @@ class MyScene extends Phaser.Scene {
         var mapLength = 20;
         var halfMapHeight = 2;
         var mapDepth = 5;
+
+        this.limit += 2 * halfMapHeight;
 
         var tileWidthHalf = 50;
         var tileHeightHalf = 25;
@@ -124,7 +127,11 @@ class MyScene extends Phaser.Scene {
     onClicked(pointer, gameObject){
         let compZ = gameObject.getData("z");
         if(this.highest < compZ) this.highest = compZ;
-        this.text.setText("Highest Height: " + this.highest)
+        if(this.highest >= this.limit){
+            this.text.setText("That's the limit! You won!");
+        }else{
+            this.text.setText("Highest Height: " + this.highest);
+        }
     }
 
     update (time, delta)
