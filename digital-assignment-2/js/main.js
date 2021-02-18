@@ -20,8 +20,9 @@ class MyScene extends Phaser.Scene {
         this.camera = null;
         this.baseLow = 500;
         this.baseHigh = 300;
-
-        var pumpKey = null;
+        this.score = 0;
+        this.lifted = false;
+        this.scoreboard = null;
     }
     
     preload() {
@@ -39,20 +40,31 @@ class MyScene extends Phaser.Scene {
         // Add some text using a CSS style.
         // Center it in X, and position its top 15 pixels from the top of the world.
         let style = { font: "25px Verdana", fill: "#000000", align: "center" };
-        let text = this.add.text( this.cameras.main.centerX, 100, "Player 1: Lift! Player 2: Spot!.", style );
+        let text = this.add.text( this.cameras.main.centerX, 100, "Player 1: Q to Lift! Player 2: O + P to Spot!.", style );
+        this.scoreboard = this.add.text( this.cameras.main.centerX, 130, "Score: " + this.score, style );
+        this.scoreboard.setOrigin( 0.5, 0.0 );
         text.setOrigin( 0.5, 0.0 );
     }
     
     update() {
         this.weight.y += 1;
-        if(this.weight.y > this.baseLow){
+        if(this.weight.y >= this.baseLow){
             this.weight.y = this.baseLow;
-        } else if( this.weight.y < this.baseHigh){
+            if(Math.abs(this.weight.x) - this.cameras.main.centerX < 200){
+                this.weight.x = this.cameras.main.centerX;
+                this.scoreboard.setText("Final Score: " + this.score);
+            }
+            if(this.lifted === true){
+                this.lifted = false;
+                this.score += 1;
+                this.scoreboard.setText("Score: " + this.score);
+            }
+        } else if( this.weight.y <= this.baseHigh) {
             this.weight.y = this.baseHigh;
-        }
-        if (this.weight.y >= this.baseLow){
-            this.weight.x = this.cameras.main.centerX;
-        }else{
+            if(this.lifted === false){
+                this.lifted = true;
+            }
+        } else {
             this.weight.x += (this.weight.x - this.cameras.main.centerX) / 40;    
         }
     }
