@@ -71,7 +71,7 @@ class MyScene extends Phaser.Scene {
     }
 
     keyDown(event) {
-        if (event.keyCode === Phaser.Input.Keyboard.KeyCodes.W) {
+        if (event.keyCode === Phaser.Input.Keyboard.KeyCodes.Q) {
                 this.weight.y -= 20;
                 this.weight.x += Math.floor((Math.random() * 2 - 1));
         } else if (event.keyCode === Phaser.Input.Keyboard.KeyCodes.O) {
