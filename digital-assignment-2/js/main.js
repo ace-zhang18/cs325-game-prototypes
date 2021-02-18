@@ -23,6 +23,7 @@ class MyScene extends Phaser.Scene {
         this.score = 0;
         this.lifted = false;
         this.scoreboard = null;
+        this.gameover = false;
     }
     
     preload() {
@@ -54,8 +55,9 @@ class MyScene extends Phaser.Scene {
                 this.weight.x = this.cameras.main.centerX;
             }else{
                 this.scoreboard.setText("Final Score: " + this.score);
+                this.gameover = true;
             }
-            if(this.lifted === true){
+            if(this.lifted === true && !this.gameover){
                 this.lifted = false;
                 this.score += 1;
                 this.scoreboard.setText("Score: " + this.score);
@@ -71,7 +73,7 @@ class MyScene extends Phaser.Scene {
     }
 
     keyDown(event) {
-        if (event.keyCode === Phaser.Input.Keyboard.KeyCodes.Q) {
+        if (event.keyCode === Phaser.Input.Keyboard.KeyCodes.) {
                 this.weight.y -= 20;
                 this.weight.x += Math.floor((Math.random() * 2 - 1));
         } else if (event.keyCode === Phaser.Input.Keyboard.KeyCodes.O) {
