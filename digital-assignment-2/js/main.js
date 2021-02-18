@@ -52,6 +52,7 @@ class MyScene extends Phaser.Scene {
             this.weight.y = this.baseLow;
             if(Math.abs(this.weight.x) - this.cameras.main.centerX < 200){
                 this.weight.x = this.cameras.main.centerX;
+            }else{
                 this.scoreboard.setText("Final Score: " + this.score);
             }
             if(this.lifted === true){
