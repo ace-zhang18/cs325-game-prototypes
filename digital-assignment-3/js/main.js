@@ -185,13 +185,13 @@ class MyScene extends Phaser.Scene {
 
         
         //player2
-        this.player2.crewDisplay = this.add.text( this.cameras.main.width - 50, 20, "Crew: " + this.player2.crew, style );
+        this.player2.crewDisplay = this.add.text( this.cameras.main.width - 50, 100, "Crew: " + this.player2.crew, style );
         this.player2.crewDisplay.setOrigin(1, 0.5);
 
-        this.player2.sailorDisplay = this.add.text( this.cameras.main.width - 50, 40, "Sailors: " + this.player2.sailors, style );
+        this.player2.sailorDisplay = this.add.text( this.cameras.main.width - 50, 20, "Sailors: " + this.player2.sailors, style );
         this.player2.sailorDisplay.setOrigin(1, 0.5);
 
-        this.player2.sailorPlusButton = this.add.sprite( this.cameras.main.width - 20, 40, 'plus' );
+        this.player2.sailorPlusButton = this.add.sprite( this.cameras.main.width - 20, 20, 'plus' );
         this.player2.sailorPlusButton.setInteractive();
         this.player2.sailorPlusButton.on( 'pointerdown', function( pointer ) {
                 if(this.scene.player2.crew > 0  && this.scene.player2.lockIn == false){
@@ -203,7 +203,7 @@ class MyScene extends Phaser.Scene {
             });  
         this.player2.sailorPlusButton.setOrigin(1, 0.5);     
 
-        this.player2.sailorMinusButton = this.add.sprite( this.cameras.main.width - 170, 40, 'minus' );
+        this.player2.sailorMinusButton = this.add.sprite( this.cameras.main.width - 170, 20, 'minus' );
         this.player2.sailorMinusButton.setInteractive();
         this.player2.sailorMinusButton.on( 'pointerdown', function( pointer ) {
                 if(this.scene.player2.sailors > 0  && this.scene.player2.lockIn == false){
@@ -215,9 +215,9 @@ class MyScene extends Phaser.Scene {
             });
         this.player2.sailorMinusButton.setOrigin(1, 0.5);
 
-        this.player2.gunnerDisplay = this.add.text( this.cameras.main.width - 50, 60, "Gunners: " + this.player2.gunners, style );
+        this.player2.gunnerDisplay = this.add.text( this.cameras.main.width - 50, 40, "Gunners: " + this.player2.gunners, style );
         this.player2.gunnerDisplay.setOrigin(1, 0.5);
-        this.player2.gunnerPlusButton = this.add.sprite( this.cameras.main.width - 20, 60, 'plus' );
+        this.player2.gunnerPlusButton = this.add.sprite( this.cameras.main.width - 20, 40, 'plus' );
         this.player2.gunnerPlusButton.setInteractive();
         this.player2.gunnerPlusButton.on( 'pointerdown', function( pointer ) {
                 if(this.scene.player2.crew > 0  && this.scene.player2.lockIn == false){
@@ -229,7 +229,7 @@ class MyScene extends Phaser.Scene {
             });
         this.player2.gunnerPlusButton.setOrigin(1, 0.5);
 
-        this.player2.gunnerMinusButton = this.add.sprite(this.cameras.main.width - 170, 60, 'minus' );
+        this.player2.gunnerMinusButton = this.add.sprite(this.cameras.main.width - 170, 40, 'minus' );
         this.player2.gunnerMinusButton.setInteractive();
         this.player2.gunnerMinusButton.on( 'pointerdown', function( pointer ) {
                 if(this.scene.player2.gunners > 0  && this.scene.player2.lockIn == false){
@@ -241,9 +241,9 @@ class MyScene extends Phaser.Scene {
             });        
         this.player2.gunnerMinusButton.setOrigin(1, 0.5);
         
-        this.player2.carpenterDisplay = this.add.text( this.cameras.main.width - 50, 80, "Carpenters: " + this.player2.carpenters, style );
+        this.player2.carpenterDisplay = this.add.text( this.cameras.main.width - 50, 60, "Carpenters: " + this.player2.carpenters, style );
         this.player2.carpenterDisplay.setOrigin(1, 0.5);
-        this.player2.carpenterPlusButton = this.add.sprite( this.cameras.main.width - 20, 80, 'plus' );
+        this.player2.carpenterPlusButton = this.add.sprite( this.cameras.main.width - 20, 60, 'plus' );
         this.player2.carpenterPlusButton.setInteractive();
         this.player2.carpenterPlusButton.on( 'pointerdown', function( pointer ) {
                 if(this.scene.player2.crew > 0  && this.scene.player2.lockIn == false){
@@ -254,7 +254,7 @@ class MyScene extends Phaser.Scene {
                 }
             });
         this.player2.carpenterPlusButton.setOrigin(1, 0.5);
-        this.player2.carpenterMinusButton = this.add.sprite( this.cameras.main.width - 170, 80, 'minus' );
+        this.player2.carpenterMinusButton = this.add.sprite( this.cameras.main.width - 170, 60, 'minus' );
         this.player2.carpenterMinusButton.setInteractive();
         this.player2.carpenterMinusButton.on( 'pointerdown', function( pointer ) {
                 if(this.scene.player2.carpenters > 0  && this.scene.player2.lockIn == false){
@@ -266,9 +266,9 @@ class MyScene extends Phaser.Scene {
             });        
         this.player2.carpenterMinusButton.setOrigin(1, 0.5);
 
-        this.player2.bilgerDisplay = this.add.text( this.cameras.main.width - 50, 100, "Bilgers: " + this.player2.bilgers, style );
+        this.player2.bilgerDisplay = this.add.text( this.cameras.main.width - 50, 80, "Bilgers: " + this.player2.bilgers, style );
         this.player2.bilgerDisplay.setOrigin(1, 0.5);
-        this.player2.bilgerPlusButton = this.add.sprite( this.cameras.main.width - 20, 100, 'plus' );
+        this.player2.bilgerPlusButton = this.add.sprite( this.cameras.main.width - 20, 80, 'plus' );
         this.player2.bilgerPlusButton.setInteractive();
         this.player2.bilgerPlusButton.on( 'pointerdown', function( pointer ) {
                 if(this.scene.player2.crew > 0  && this.scene.player2.lockIn == false){
@@ -279,7 +279,7 @@ class MyScene extends Phaser.Scene {
                 }
             });
         this.player2.bilgerPlusButton.setOrigin(1, 0.5);
-        this.player2.bilgerMinusButton = this.add.sprite( this.cameras.main.width - 170, 100, 'minus' );
+        this.player2.bilgerMinusButton = this.add.sprite( this.cameras.main.width - 170, 80, 'minus' );
         this.player2.bilgerMinusButton.setInteractive();
         this.player2.bilgerMinusButton.on( 'pointerdown', function( pointer ) {
                 if(this.scene.player2.bilgers > 0 && this.scene.player2.lockIn == false){
@@ -291,13 +291,13 @@ class MyScene extends Phaser.Scene {
             });        
         this.player2.bilgerMinusButton.setOrigin(1, 0.5);
 
-        this.player2.HPDisplay = this.add.text( this.cameras.main.width - 200, 40, "HP: " + this.player2.HP + "\\" + this.player2.maxHP, style );
+        this.player2.HPDisplay = this.add.text( this.cameras.main.width - 200, 20, "HP: " + this.player2.HP + "\\" + this.player2.maxHP, style );
         this.player2.HPDisplay.setOrigin(1, 0.5);
 
-        this.player2.BilgeDisplay = this.add.text( this.cameras.main.width - 200, 60, "Bilge: " + this.player2.bilge + "\\" + (this.player2.maxHP * 10), style );
+        this.player2.BilgeDisplay = this.add.text( this.cameras.main.width - 200, 40, "Bilge: " + this.player2.bilge + "\\" + (this.player2.maxHP * 10), style );
         this.player2.BilgeDisplay.setOrigin(1, 0.5);
 
-        this.player2.lockInButton = this.add.sprite(  this.cameras.main.width - 200, 100, 'lockin' );
+        this.player2.lockInButton = this.add.sprite(  this.cameras.main.width - 200, 80, 'lockin' );
         this.player2.lockInButton.setInteractive();
         this.player2.lockInButton.on( 'pointerdown', function( pointer ) {
             if(this.scene.player2.sunk == false) this.scene.player2.lockIn = true;
@@ -315,20 +315,6 @@ class MyScene extends Phaser.Scene {
     
     update() {
         if(this.player1.lockIn == true && this.player2.lockIn == true){
-            this.player1.HP += this.player1.carpenters;
-            if(this.player1.HP > this.player1.maxHP) this.player1.HP = this.player1.maxHP;
-            let p1dmg = this.player2.gunners - this.player1.sailors;
-            if(p1dmg > 0) this.player1.HP -= p1dmg;
-
-            this.player2.HP += this.player2.carpenters;
-            if(this.player2.HP > this.player2.maxHP) this.player2.HP = this.player2.maxHP;
-            let p2dmg = this.player1.gunners - this.player2.sailors;
-            if(p2dmg > 0) this.player2.HP -= p2dmg;
-            
-            let style = { font: "16px Verdana", fill: "#000000", align: "center" };
-            this.player1.HPDisplay.setText("HP: " + this.player1.HP + "\\" + this.player1.maxHP);
-            this.player2.HPDisplay.setText("HP: " + this.player2.HP + "\\" + this.player2.maxHP);
-
             this.player1.bilge += this.player1.maxHP - this.player1.HP;
             this.player1.bilge -= this.player1.bilgers;
             if(this.player1.bilge < 0) this.player1.bilge = 0;
@@ -346,6 +332,20 @@ class MyScene extends Phaser.Scene {
                 this.player1.sunkDisplay.setOrigin(1, 0.5);
                         
             }
+
+            this.player1.HP += this.player1.carpenters;
+            if(this.player1.HP > this.player1.maxHP) this.player1.HP = this.player1.maxHP;
+            let p1dmg = this.player2.gunners - this.player1.sailors;
+            if(p1dmg > 0) this.player1.HP -= p1dmg;
+
+            this.player2.HP += this.player2.carpenters;
+            if(this.player2.HP > this.player2.maxHP) this.player2.HP = this.player2.maxHP;
+            let p2dmg = this.player1.gunners - this.player2.sailors;
+            if(p2dmg > 0) this.player2.HP -= p2dmg;
+            
+            let style = { font: "16px Verdana", fill: "#000000", align: "center" };
+            this.player1.HPDisplay.setText("HP: " + this.player1.HP + "\\" + this.player1.maxHP);
+            this.player2.HPDisplay.setText("HP: " + this.player2.HP + "\\" + this.player2.maxHP);
 
             if(this.player2.HP <= 0 || this.player2.bilge >= this.player2.maxHP * 10){
                 this.player2.sunk = true;
