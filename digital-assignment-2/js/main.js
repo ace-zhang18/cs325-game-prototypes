@@ -68,7 +68,7 @@ class MyScene extends Phaser.Scene {
                 this.lifted = true;
             }
         } else {
-            this.weight.x += (this.weight.x - this.cameras.main.centerX) / 40;    
+            this.weight.x += (this.weight.x - this.cameras.main.centerX) / (40 - this.score);    
         }
     }
 
