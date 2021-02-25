@@ -28,6 +28,7 @@ class MyScene extends Phaser.Scene {
         this.player1.maxHP = 15;
         this.player1.bilge = 0;
         this.player1.sunk = false;
+        this.player1.lockIn = false;
 
         this.player2.sailors = 0;
         this.player2.gunners = 0;
@@ -38,6 +39,7 @@ class MyScene extends Phaser.Scene {
         this.player2.maxHP = 15;
         this.player2.bilge = 0;
         this.player2.sunk = false;
+        this.player2.lockIn = false;
     }
     
     preload() {
@@ -65,6 +67,7 @@ class MyScene extends Phaser.Scene {
         this.player1.sailorPlusButton.setInteractive();
         this.player1.sailorPlusButton.on( 'pointerdown', function( pointer ) {
                 if(this.scene.player1.crew > 0  && this.scene.player1.lockIn == false){
+                    console.log("SAIL")
                     this.scene.player1.crew -= 1;
                     this.scene.player1.sailors += 1;
                     this.scene.player1.crewDisplay.setText("Crew: " + this.scene.player1.crew);
@@ -171,9 +174,16 @@ class MyScene extends Phaser.Scene {
         this.player1.lockInButton.setInteractive();
         this.player1.lockInButton.on( 'pointerdown', function( pointer ) {
             if(this.scene.player1.sunk == false) this.scene.player1.lockIn = true;
-            });  
+
+            if(this.scene.player1.lockIn == true){
+                this.scene.player1.lockInDisplay = this.scene.add.text(  200, this.scene.cameras.main.height - 80, "Locked in!", style );
+                this.scene.player1.lockInDisplay.setOrigin(0, 0.5);
+            }
+        });  
         this.player1.lockInButton.setOrigin(0, 0.5);     
 
+
+        
         //player2
         this.player2.crewDisplay = this.add.text( this.cameras.main.width - 50, 20, "Crew: " + this.player2.crew, style );
         this.player2.crewDisplay.setOrigin(1, 0.5);
@@ -281,18 +291,26 @@ class MyScene extends Phaser.Scene {
             });        
         this.player2.bilgerMinusButton.setOrigin(1, 0.5);
 
-        this.player2.HPDisplay = this.add.text( this.cameras.main.width - 200, 20, "HP: " + this.player2.HP + "\\" + this.player2.maxHP, style );
+        this.player2.HPDisplay = this.add.text( this.cameras.main.width - 200, 40, "HP: " + this.player2.HP + "\\" + this.player2.maxHP, style );
         this.player2.HPDisplay.setOrigin(1, 0.5);
 
-        this.player2.BilgeDisplay = this.add.text( this.cameras.main.width - 200, 40, "Bilge: " + this.player2.bilge + "\\" + (this.player2.maxHP * 10), style );
+        this.player2.BilgeDisplay = this.add.text( this.cameras.main.width - 200, 60, "Bilge: " + this.player2.bilge + "\\" + (this.player2.maxHP * 10), style );
         this.player2.BilgeDisplay.setOrigin(1, 0.5);
 
         this.player2.lockInButton = this.add.sprite(  this.cameras.main.width - 200, 100, 'lockin' );
         this.player2.lockInButton.setInteractive();
         this.player2.lockInButton.on( 'pointerdown', function( pointer ) {
             if(this.scene.player2.sunk == false) this.scene.player2.lockIn = true;
-            });  
+        
+            if(this.scene.player2.lockIn == true){
+                this.scene.player2.lockInDisplay = this.scene.add.text( this.scene.cameras.main.width - 200, 80, "Locked in!", style );
+                this.scene.player2.lockInDisplay.setOrigin(1, 0.5);
+            }
+    
+        });  
         this.player2.lockInButton.setOrigin(1, 0.5);     
+
+
     }
     
     update() {
@@ -338,6 +356,9 @@ class MyScene extends Phaser.Scene {
             }
 
             this.player1.lockIn = false;
+            this.player2.lockIn = false;
+            this.player1.lockInDisplay.setText();
+            this.player2.lockInDisplay.setText()
         }
     }
 }
