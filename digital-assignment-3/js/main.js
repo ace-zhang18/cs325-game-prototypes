@@ -37,16 +37,26 @@ class MyScene extends Phaser.Scene {
         this.cameras.main.setBackgroundColor("#186896")
 
         let style = { font: "16px Verdana", fill: "#000000", align: "center" };
-        this.player1.crewDisplay = this.add.text( 40, this.cameras.main.height - 40, "Crew: " + this.player1.crew, style );
+        this.player1.crewDisplay = this.add.text( 50, this.cameras.main.height - 40, "Crew: " + this.player1.crew, style );
         this.player1.crewDisplay.setOrigin(0, 0.5);
-        this.player1.gunnerDisplay = this.add.text( 40, this.cameras.main.height - 60, "Gunners: " + this.player1.gunners, style );
+        this.player1.gunnerDisplay = this.add.text( 50, this.cameras.main.height - 60, "Gunners: " + this.player1.gunners, style );
         this.player1.gunnerDisplay.setOrigin(0, 0.5);
-        this.player1.gunnerPlusButton = this.add.sprite( 140, this.cameras.main.height - 60, 'plus' );
+        this.player1.gunnerPlusButton = this.add.sprite( 160, this.cameras.main.height - 60, 'plus' );
         this.player1.gunnerPlusButton.setInteractive();
         this.player1.gunnerPlusButton.on( 'pointerdown', function( pointer ) {
                 if(this.scene.player1.crew > 0){
                     this.scene.player1.crew -= 1;
                     this.scene.player1.gunners += 1;
+                    this.scene.player1.crewDisplay.setText("Crew: " + this.scene.player1.crew);
+                    this.scene.player1.gunnerDisplay.setText("Gunners: " + this.scene.player1.gunners);
+                }
+            });  
+        this.player1.gunnerPlusButton = this.add.sprite( 20, this.cameras.main.height - 60, 'minus' );
+        this.player1.gunnerPlusButton.setInteractive();
+        this.player1.gunnerPlusButton.on( 'pointerdown', function( pointer ) {
+                if(this.scene.player1.gunners > 0){
+                    this.scene.player1.crew += 1;
+                    this.scene.player1.gunners -= 1;
                     this.scene.player1.crewDisplay.setText("Crew: " + this.scene.player1.crew);
                     this.scene.player1.gunnerDisplay.setText("Gunners: " + this.scene.player1.gunners);
                 }
